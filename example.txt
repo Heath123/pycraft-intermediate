@@ -1,16 +1,14 @@
-/*
-  3           0 LOAD_CONST               0 (1)
-              2 LOAD_CONST               1 (2)
-              4 COMPARE_OP               2 (==)
-              6 POP_JUMP_IF_FALSE       16
-
-  4           8 LOAD_NAME                0 (print)
-             10 LOAD_CONST               2 ('abc')
-             12 CALL_FUNCTION            1
-             14 POP_TOP
-        >>   16 LOAD_CONST               3 (None)
-             18 RETURN_VALUE
-*/
+//  3           0 LOAD_CONST               0 (1)
+//              2 LOAD_CONST               1 (2)
+//              4 COMPARE_OP               2 (==)
+//              6 POP_JUMP_IF_FALSE       16
+//
+//  4           8 LOAD_NAME                0 (print)
+//             10 LOAD_CONST               2 ('abc')
+//             12 CALL_FUNCTION            1
+//             14 POP_TOP
+//        >>   16 LOAD_CONST               3 (None)
+//             18 RETURN_VALUE
 
 STACK main
 VAR temp1
@@ -19,13 +17,14 @@ VAR temp2
 PUSH main value {type: "int", value: 1}
 PUSH main value {type: "int", value: 2}
 
-POP main TO temp1
-POP main TO temp2
-IF (var temp1) == (var temp2)
+POP main TO var temp1
+POP main TO var temp2
+// o== overwrites the second variable for a small performance increase
+IF NOT (var temp1) o== (var temp2)
   JMP 16
 
 PUSH main value {type: "function", id: 1}
-PUSH main value {type: "str", value: ~LIST(["a", "b", "c"])}
+PUSH main str-value "abc"
 
 POP main TO temp1
 FUNCID var temp1
