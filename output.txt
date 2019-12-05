@@ -1,12 +1,12 @@
 /data modify storage example:stacks main set value []
 /data modify storage example:vars temp1 set value 0
 /data modify storage example:vars temp2 set value 0
-/data modify storage example:stacks main prepend value {type: "int", value: 1}
-/data modify storage example:stacks main prepend value {type: "int", value: 2}
-/data modify var temp1 set from storage example:stacks main
-/data modify var temp2 set from storage example:stacks main
-/data modify storage example:stacks main prepend value {type: "function", id: 1}
-/data modify storage example:stacks main prepend str-value "abc"
-/data modify temp1 set from storage example:stacks main
+/data modify storage example:stacks main apppend value {type: "int", value: 1}
+/data modify storage example:stacks main apppend value {type: "int", value: 2}
+/data modify var temp1 set from storage example:stacks main[-1]
+/data modify var temp2 set from storage example:stacks main[-1]
+/data modify storage example:stacks main apppend value {type: "function", id: 1}
+/data modify storage example:stacks main apppend str-value "abc"
+/data modify temp1 set from storage example:stacks main[-1]
 error - no TO
-/data modify storage example:stacks main prepend value {type: "NoneType"}
+/data modify storage example:stacks main apppend value {type: "NoneType"}

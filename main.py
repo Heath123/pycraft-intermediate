@@ -19,11 +19,11 @@ def parse_line(line):
     return "/data modify storage example:stacks %s set value []\n" % args[0]
   elif line.startswith("PUSH "):
     args = line[5:].split(" ")
-    return "/data modify storage example:stacks %s prepend %s\n" % (args[0], " ".join(args[1:]))
+    return "/data modify storage example:stacks %s apppend %s\n" % (args[0], " ".join(args[1:]))
   elif line.startswith("POP "):
     args = line[4:].split(" ")
     if len(args) > 2 and args[1] == "TO":
-      return "/data modify %s set from storage example:stacks %s\n" % (resolve_data_path(" ".join(args[2:])), args[0])
+      return "/data modify %s set from storage example:stacks %s[-1]\n" % (resolve_data_path(" ".join(args[2:])), args[0])
     else:
       return "error - no TO\n"
 
